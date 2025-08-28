@@ -30,7 +30,7 @@ def predict(model_path, input_file):
         
         missing_cols = [col for col in required_columns if col not in data.columns]
         if missing_cols:
-            click.echo(f"❌ Missing required columns: {missing_cols}", err=True)
+            click.echo(f"Missing required columns: {missing_cols}", err=True)
             return
         
         click.echo(" Analyzing security threats...")
@@ -39,7 +39,7 @@ def predict(model_path, input_file):
             # Analyze threat
             result = analyzer.analyze_threat(row)
             
-            click.echo(f"\n📊 Analysis for Record {i+1}:")
+            click.echo(f"\nAnalysis for Record {i+1}:")
             click.echo(f"   Session ID: {row['session_id']}")
             click.echo(f"   Attack Type: {result['attack_type']}")
             click.echo(f"   Confidence: {result['confidence']}")
@@ -47,16 +47,16 @@ def predict(model_path, input_file):
             click.echo(f"   Timestamp: {result['timestamp']}")
             
             if result['indicators']:
-                click.echo("   🚨 Threat Indicators:")
+                click.echo("   Threat Indicators:")
                 for indicator in result['indicators']:
                     click.echo(f"      • {indicator}")
             
             # Show prediction
             if result['threat_status'] == 'THREAT':
-                click.echo("   🚨 SECURITY THREAT DETECTED!")
+                click.echo("   SECURITY THREAT DETECTED!")
                 click.echo(f"   Confidence: {max(result['probability']) * 100:.2f}%")
             else:
-                click.echo("   ✅ No security threat detected")
+                click.echo("   No security threat detected")
                 click.echo(f"   Confidence: {max(result['probability']) * 100:.2f}%")
             
     except Exception as e:
@@ -70,7 +70,7 @@ def system(model_path):
     try:
         analyzer = SecurityAnalyzer(model_path)
         
-        click.echo("🔍 Reading system data...")
+        click.echo("Reading system data...")
         
         # Read system data
         system_data = analyzer.read_system_data()
@@ -88,7 +88,7 @@ def system(model_path):
             
             if result['threat_status'] == 'THREAT':
                 threat_count += 1
-                click.echo(f"\n🚨 THREAT DETECTED:")
+                click.echo(f"\nTHREAT DETECTED:")
                 click.echo(f"   Session ID: {data['session_id']}")
                 click.echo(f"   Attack Type: {result['attack_type']}")
                 click.echo(f"   Risk Score: {result['risk_score']}/100")
@@ -99,9 +99,9 @@ def system(model_path):
                     for indicator in result['indicators']:
                         click.echo(f"      • {indicator}")
             else:
-                click.echo(f"✅ Safe: {data['session_id']}")
+                click.echo(f"Safe: {data['session_id']}")
         
-        click.echo(f"\n📊 Summary: {threat_count} threats detected out of {len(system_data)} events")
+        click.echo(f"\nSummary: {threat_count} threats detected out of {len(system_data)} events")
         
     except Exception as e:
         click.echo(f"Error: {str(e)}", err=True)
@@ -113,11 +113,11 @@ def info(model_path):
     # Show model information
     try:
         if os.path.exists(model_path):
-            click.echo("✅ Pre-trained model found")
-            click.echo(f"📁 Model location: {model_path}")
-            click.echo(" Ready for security threat detection!")
+            click.echo("Pre-trained model found")
+            click.echo(f"Model location: {model_path}")
+            click.echo("Ready for security threat detection!")
         else:
-            click.echo("❌ Pre-trained model not found")
+            click.echo("Pre-trained model not found")
             click.echo("Please ensure the model file exists or contact support.")
     except Exception as e:
         click.echo(f"Error: {str(e)}", err=True)
@@ -144,7 +144,7 @@ def demo():
         demo_file = 'demo_data.csv'
         sample_data.to_csv(demo_file, index=False)
         
-        click.echo("🎯 Running Security Threat Detection Demo...")
+        click.echo("Running Security Threat Detection Demo...")
         click.echo("This will analyze 3 sample records with different threat levels.")
         
         # Run prediction on demo data
@@ -156,7 +156,7 @@ def demo():
             result = analyzer.analyze_threat(row)
             
             # Display results
-            click.echo(f"\n📊 Analysis for Record {i+1}:")
+            click.echo(f"\nAnalysis for Record {i+1}:")
             click.echo(f"   Session ID: {row['session_id']}")
             click.echo(f"   Attack Type: {result['attack_type']}")
             click.echo(f"   Confidence: {result['confidence']}")
@@ -164,16 +164,16 @@ def demo():
             click.echo(f"   Timestamp: {result['timestamp']}")
             
             if result['indicators']:
-                click.echo("   🚨 Threat Indicators:")
+                click.echo("   Threat Indicators:")
                 for indicator in result['indicators']:
                     click.echo(f"      • {indicator}")
             
             # Show prediction result
             if result['threat_status'] == 'THREAT':
-                click.echo("   🚨 SECURITY THREAT DETECTED!")
+                click.echo("   SECURITY THREAT DETECTED!")
                 click.echo(f"   Confidence: {max(result['probability']) * 100:.2f}%")
             else:
-                click.echo("   ✅ No security threat detected")
+                click.echo("   No security threat detected")
                 click.echo(f"   Confidence: {max(result['probability']) * 100:.2f}%")
         
         # Clean up
