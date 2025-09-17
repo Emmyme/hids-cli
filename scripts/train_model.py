@@ -6,7 +6,7 @@ from scripts.data_processor import DataProcessor
 from scripts.model import SecurityModel
 
 def main():
-    print("🔧 Training pre-trained model for HIDS CLI...")
+    print("Training pre-trained model for HIDS CLI...")
     
     try:
         # Load and process data
@@ -27,12 +27,12 @@ def main():
                         label_encoders=processor.label_encoders,
                         scaler=processor.scaler)
         
-        print(f"✅ Pre-trained model saved to: models/pretrained_model.pkl")
-        print(f"📊 Model accuracy: {accuracy:.4f}")
+        print(f"Pre-trained model saved to: models/pretrained_model.pkl")
+        print(f"Model accuracy: {accuracy:.4f}")
         print(" Model is ready for production use!")
         
     except Exception as e:
-        print(f"❌ Error training model: {str(e)}")
+        print(f"Error training model: {str(e)}")
         sys.exit(1)
 
 if __name__ == '__main__':
