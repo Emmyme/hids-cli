@@ -14,7 +14,7 @@ A Python CLI tool for detecting security threats using machine learning. It comb
 ### Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Emmyme/hids-cli
 cd hids-cli
 pip install -r requirements.txt
 ```
@@ -67,10 +67,10 @@ Your CSV should have these columns:
 ## Example Output
 
 ```
-📊 Analysis for Record 1:
+   Analysis for Record 1:
    Attack Type: Brute Force
    Risk Score: 44/100
-   🚨 SECURITY THREAT DETECTED!
+   SECURITY THREAT DETECTED!
    Confidence: 100.00%
 ```
 
